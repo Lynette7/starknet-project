@@ -24,11 +24,10 @@ struct Database {
 
 trait DatabaseTrait {
     fn createuser(ref self: Database, user: User);
-    fn find_user(self: @Database, username: felt252) -> Array<u128>;
+    //fn find_user(self: @Database, username: felt252) -> Array<u128>;
     fn createjob(ref self: Database, jobs: Jobs);
-    fn find_job(self: @Database, title: felt252) -> Array<u128>;
+    //fn find_job(self: @Database, title: felt252) -> Array<u128>;
 }
-
 
 impl DatabaseImpl of DatabaseTrait {
     fn createuser(ref self: Database, user: User) {
@@ -36,17 +35,45 @@ impl DatabaseImpl of DatabaseTrait {
     }
 
     fn find_user(self: @Database, username: felt252) -> Array<u128> {
-        let mut i = 0;
-        let mut result = ArrayTrait::new();
+    let mut i = 0;
+    let mut result = ArrayTrait::new();
 
-        loop {
-            let user: User = *self.users[i];
-            if (user.username == username) {
-                result.append(user);
-                break;
-            }
-            i += 1;
-        };
-        result
+    loop {
+        let user: User = *self.users[i];
+        if (user.username == username) {
+            result.append(user);
+            break;
+        }
+        i += 1;
+    };
+    result
     }
+
+    fn createjob(ref self: Database, job: Jobs) {
+        self.jobs.append(job);
+    }
+}
+
+fn main() {
+    let user = User {
+        username: 'Bestdev',
+        address: '0x1234567891012345',
+    };
+
+    let job = Jobs {
+        title: 'Development',
+        type: 'contract',
+        description: 'A very great job to do',
+        skills: 'Pyhton',
+        compensation: '200USD',
+    };
+
+    let mut database = Database {
+        users: ArrayTrait::new(),
+        jobs: ArrayTrait::new(),
+    };
+
+    database.createuser(database, user);
+    database.createjob(database, job);
+    dayabase.find_user(database, 'Bestdev');
 }
