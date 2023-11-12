@@ -169,11 +169,11 @@ fn main() {
         applications: ArrayTrait::new(),
     };
 
-    // database.createuser(user);
-    // database.createuser(user2);
-    // database.createjob(job1);
-    // database.find_user('dev');
-    // database.view_job('Development');
-    // database.users.len().print();
+    database.createuser(user);
+    database.createuser(user2);
+    database.createjob(job1);
+    database.find_user('dev');
+    database.view_job('Development');
+    database.users.len().print();
     database.apply_job(application1);
 }
