@@ -1,23 +1,11 @@
 //mod main; 
 
-use starknet::{ContractAddress,get_caller_address,Store,SyscallResult,StorageBaseAddress,storage_read_syscall, storage_write_syscall,
-    storage_address_from_base_and_offset,};
-use array::ArrayTrait;
-use hash::{HashStateTrait,Hash};
-
 #[starknet::interface]
 #[derive(Drop,Copy,Serde,Hash)]
     struct Applications {
         title: felt252,
         username: felt252,
     }
-// trait DatabaseTrait<T> {
-//     fn display_books(self:@T)->Array<felt252>;
-
-//     fn add_book(ref self:T,key:Book);
-
-//     fn search_book(self:@T,key:Book)->felt252;
-// }
 
 #[starknet::contract]
 mod GigListings {
